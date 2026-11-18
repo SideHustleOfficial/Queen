@@ -1,0 +1,209 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>For My Queen</title>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Inter:wght@400;600&display=swap");
+/* Layout: a soft dusk-rose page. A script title over floating hearts, then a letter card that opens on tap, then small notes. */
+:root {
+  --bg: #fdf0f5;
+  --bg2: #f6e3f0;
+  --surface: rgba(255, 255, 255, 0.72);
+  --fg: #4a2038;
+  --muted: #8a5f78;
+  --accent: #c2417a;
+  --gold: #d4a25f;
+  --line: rgba(194, 65, 122, 0.22);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #220f1d;
+    --bg2: #351a2e;
+    --surface: rgba(43, 24, 40, 0.75);
+    --fg: #f9e4ef;
+    --muted: #c9a0b8;
+    --accent: #f592b8;
+    --gold: #e8c083;
+    --line: rgba(245, 146, 184, 0.25);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #220f1d;
+  --bg2: #351a2e;
+  --surface: rgba(43, 24, 40, 0.75);
+  --fg: #f9e4ef;
+  --muted: #c9a0b8;
+  --accent: #f592b8;
+  --gold: #e8c083;
+  --line: rgba(245, 146, 184, 0.25);
+  color-scheme: dark;
+}
+body {
+  margin: 0;
+  min-height: 100%;
+  background: radial-gradient(ellipse at top, var(--bg2), var(--bg) 70%);
+  color: var(--fg);
+  font-family: "Inter", system-ui, sans-serif;
+  line-height: 1.65;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px 56px;
+  overflow-x: hidden;
+}
+main { max-width: 640px; margin: 0 auto; display: grid; gap: 32px; position: relative; z-index: 1; }
+
+/* Floating hearts drifting behind the content */
+.hearts { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.hearts span {
+  position: absolute;
+  bottom: -40px;
+  color: var(--accent);
+  opacity: 0.35;
+  font-size: 18px;
+  animation: rise linear infinite;
+}
+.hearts span:nth-child(1) { left: 8%;  animation-duration: 14s; animation-delay: 0s;  font-size: 14px; }
+.hearts span:nth-child(2) { left: 22%; animation-duration: 18s; animation-delay: 3s;  font-size: 22px; }
+.hearts span:nth-child(3) { left: 40%; animation-duration: 12s; animation-delay: 6s;  font-size: 16px; }
+.hearts span:nth-child(4) { left: 58%; animation-duration: 20s; animation-delay: 1s;  font-size: 20px; }
+.hearts span:nth-child(5) { left: 74%; animation-duration: 16s; animation-delay: 8s;  font-size: 15px; }
+.hearts span:nth-child(6) { left: 90%; animation-duration: 15s; animation-delay: 4s;  font-size: 24px; }
+@keyframes rise {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10%  { opacity: 0.4; }
+  100% { transform: translateY(-110vh) rotate(25deg); opacity: 0; }
+}
+
+.hero { text-align: center; padding: 40px 8px 8px; display: grid; gap: 16px; justify-items: center; }
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.72rem;
+  color: var(--gold);
+  margin: 0;
+}
+h1 {
+  font-family: "Dancing Script", "Brush Script MT", cursive;
+  font-weight: 700;
+  font-size: clamp(2.6rem, 10vw, 4.2rem);
+  line-height: 1.1;
+  margin: 0;
+  color: var(--accent);
+  text-wrap: balance;
+  text-shadow: 0 0 24px rgba(245, 146, 184, 0.35);
+}
+.sub {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: 1.35rem;
+  color: var(--muted);
+  margin: 0;
+  max-width: 30ch;
+  text-wrap: balance;
+}
+.sparkle { color: var(--gold); letter-spacing: 0.6em; font-size: 0.9rem; }
+
+button {
+  font: inherit;
+  font-weight: 600;
+  padding: 13px 26px;
+  border-radius: 999px;
+  border: 1px solid var(--accent);
+  background: linear-gradient(135deg, var(--accent), #e27aa4);
+  color: #fff;
+  cursor: pointer;
+  width: fit-content;
+  justify-self: center;
+  box-shadow: 0 8px 24px -8px var(--accent);
+  transition: transform 0.2s ease;
+}
+button:hover { transform: translateY(-1px); }
+button:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+.letter {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 34px 28px;
+  display: grid;
+  gap: 18px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 20px 60px -28px var(--accent), inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.22rem;
+}
+.letter p { margin: 0; }
+.letter .dear { font-family: "Dancing Script", cursive; font-size: 2rem; color: var(--accent); }
+.letter .sign { font-family: "Dancing Script", cursive; color: var(--accent); font-size: 1.8rem; line-height: 1.2; }
+
+.notes { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+.note {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 18px 18px 16px;
+  min-width: 0;
+  text-align: center;
+}
+.note .glyph { color: var(--accent); font-size: 1.2rem; }
+.note h2 { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.25rem; margin: 6px 0 4px; }
+.note p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+footer { text-align: center; color: var(--muted); font-family: "Cormorant Garamond", Georgia, serif; font-style: italic; font-size: 1.1rem; }
+
+@media (prefers-reduced-motion: no-preference) {
+  h1 { animation: shimmer 5s ease-in-out infinite; }
+  @keyframes shimmer { 50% { text-shadow: 0 0 36px rgba(245, 146, 184, 0.6); } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hearts { display: none; }
+}
+</style>
+
+<div class="hearts" aria-hidden="true">
+  <span>&hearts;</span><span>&hearts;</span><span>&hearts;</span><span>&hearts;</span><span>&hearts;</span><span>&hearts;</span>
+</div>
+
+<main>
+  <section class="hero">
+    <p class="eyebrow">Princess Day</p>
+    <h1>My Queen, My Lord</h1>
+    <p class="sparkle" aria-hidden="true">&#10022; &#10022; &#10022;</p>
+    <p class="sub">Happy Princess Day. This little corner of the internet is only for you.</p>
+    <button type="button" id="open" aria-expanded="false" aria-controls="letter">Open my letter</button>
+  </section>
+
+  <section class="letter" id="letter" hidden>
+    <p class="dear">My Queen,</p>
+    <p>Happy Princess Day. I call you my Queen Lord, and I mean it in every way: you rule my thoughts, you carry the weight of my days with a grace I don't deserve, and you still make me feel like the lucky one in every room we share.</p>
+    <p>Today is yours. You have always been the kind of person who makes ordinary moments feel worth remembering: the way you laugh at small things, the way you look out for the people you love, the way you make me want to be a little better every day. If there were a crown big enough for all of that, I would put it on your head myself.</p>
+    <p>I hope you feel as cherished today as you make me feel. I hope nothing heavy reaches you, and that everything good finds its way to you. And I hope you know that whatever kingdom we build together, I am honored to stand beside you in it.</p>
+    <p>I love you, my Queen. Today, tomorrow, and every day after.</p>
+    <p class="sign">Forever yours,<br>Your Lord</p>
+  </section>
+
+  <section class="notes" aria-label="Little reminders">
+    <div class="note"><div class="glyph" aria-hidden="true">&#9825;</div><h2>You are cherished</h2><p>Every day, not only on your special day.</p></div>
+    <div class="note"><div class="glyph" aria-hidden="true">&#9825;</div><h2>You are my favorite person</h2><p>In every kingdom, in every season.</p></div>
+    <div class="note"><div class="glyph" aria-hidden="true">&#9825;</div><h2>You are my home</h2><p>Wherever we are, that is where I want to be.</p></div>
+  </section>
+
+  <footer>Made with all my love.</footer>
+</main>
+
+<script>
+(function () {
+  var btn = document.getElementById("open");
+  var letter = document.getElementById("letter");
+  btn.addEventListener("click", function () {
+    var open = letter.hidden;
+    letter.hidden = !open;
+    btn.setAttribute("aria-expanded", String(open));
+    btn.textContent = open ? "Close my letter" : "Open my letter";
+    if (open) letter.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+})();
+</script>
+
+</body></html>
